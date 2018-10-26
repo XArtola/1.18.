@@ -27,27 +27,26 @@ public class Ex_1_18 {
 				"s", "t", "u", "v", "w", "x", "y", "z" };
 
 		String result[] = { " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ",
-				" ", " ", " ", " ", " ", " ", " ", " "};
+				" ", " ", " ", " ", " ", " ", " ", " " };
 		String incompatible = " ";
 
 		while (finishFlag) {
-			
-			System.out.println("Enter as many words as you want to order them alphabetically");
+
+			System.out.println("Enter as many words as you want to order them alphabetically\n"
+					+ "WARNING: Any word starting or containig a non letter will not be taken into consideration\n");
 
 			String words[] = sc.nextLine().split(" ");
 
 			for (int i = 0; words.length - 1 >= i; i++) {
 
-				compare :for (int j = 0; order.length - 1 >= j; j++) {
-					
-					if(words[i].matches("[^[A-Za-z]$/]")) {
-						
-						incompatible= " " + words[i];
-						break compare;						
-					}
-					else if (words[i].charAt(0) == order[j].charAt(0)) {
+				compare: for (int j = 0; order.length - 1 >= j; j++) {
+
+					if (words[i].matches("[^[A-Za-z]]")) {
+						incompatible+= " " + words[i];
+						break compare;
+					} else if (words[i].charAt(0) == order[j].charAt(0)) {
 						if (result[j] == " ") {
-							result[j] = words[i];						
+							result[j] = words[i];
 							break compare;
 
 						}
@@ -55,16 +54,17 @@ public class Ex_1_18 {
 						else {
 
 							result[j] = result[j] + " " + words[i];
+							
+							
+							//Dauden hitz guztien bigarren letra hartu eta indexeko posizioa gorde, konparatu eta horren arabera array-ean sartu
 
 						}
 
 					}
-					
-					}
 
 				}
 
-			
+			}
 
 			System.out.println("The correct order is:\n");
 			for (int k = 0; result.length > k; k++) {
@@ -76,7 +76,7 @@ public class Ex_1_18 {
 				}
 
 			}
-			
+
 			System.out.println("\n" + "Wrong or imcompatible: " + incompatible + "\n");
 
 			boolean optionFlag = true;
@@ -91,18 +91,18 @@ public class Ex_1_18 {
 
 					finishFlag = false;
 					optionFlag = false;
-					
+
 				}
 
 				else if (election.charAt(0) == 'y' || election.charAt(0) == 'Y') {
-					
+
 					optionFlag = false;
 					sc.nextLine();
-					
-					for(int k = 0; k > result.length; k++ ) {
-						
-						/*result[k] = null;*/
-						
+
+					for (int k = 0; k > result.length; k++) {
+
+						/* result[k] = null; */
+
 					}
 
 				}
@@ -110,7 +110,7 @@ public class Ex_1_18 {
 				else {
 
 					System.out.println("You have not entered a valid option. TRY AGAIN.\n");
-					
+
 				}
 
 			}
