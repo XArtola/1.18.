@@ -3,16 +3,39 @@
  */
 
 /**
- * @author ik013043z1
+ * @author Xabier
  *
  */
 import java.util.Scanner;
 
-public class Ex_1_18 {
+public class Test4 {
 
 	/**
 	 * @param args
 	 */
+	public static String wordsValue(String word) {
+
+		String order[] = { " ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q",
+				"r", "s", "t", "u", "v", "w", "x", "y", "z" }; // length 26
+		String wordValue = " ";
+
+		for (int h = 0; word.length() > h; h++) {
+
+			for (int j = 0; order.length > j; j++) {
+
+				if (word.substring(h, h + 1).equals(order[j])) {
+
+					wordValue +=" "+ j;
+
+				}
+			}
+		}
+		
+		System.out.println(wordValue);
+		wordValue.trim();
+		return wordValue;
+	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
@@ -21,6 +44,10 @@ public class Ex_1_18 {
 		boolean finishFlag = true;
 
 		String incompatible = " ";
+		
+		String result = " ";
+
+		int wordcnt = 0;
 
 		while (finishFlag) {
 
@@ -41,75 +68,71 @@ public class Ex_1_18 {
 
 					incompatible += " " + words[i];
 
-					words[i] = "/";
+					words[i] = " ";
 
 					break;
 				}
 
 			}
 
-			String minWord = " ";
-			String index = "/";
-			int repeat = 0;
-			int minWordIndex = 0;
-			int comparation = 0;
-			int minpos = 0;
+			String values[] = new String[words.length];
 
-			int comparePos = 0;
+			int cntwords = 0;
+			int cntpos = 0;
 
-			boolean finish = false;
+			for (int a = 0; words.length > a; a++) {
 
-			for (int a = 0; words.length - 1 >= a; a++) {
+				cntpos = 0;
 
-				if (words[comparePos].matches("/")) {
+				if (!(words[cntwords] == " ")) {
 
-					comparePos++;
-				}
+					values[cntwords] = wordsValue(words[cntwords]);
 
-				minWord = words[comparePos];
-				minWordIndex = comparePos;
-
-				if (!(words[comparePos].matches("/"))) {
-
-					for (int b = 0; words.length - 1 >= b; b++) {
-
-						if (!(comparePos == b)) {
-
-							if (!(words[b].matches("/"))) {
-
-								if (minWord.compareTo(words[b]) == 0) {
-									repeat = b;
-
-								}
-
-								else if (minWord.compareTo(words[b]) > 0) {
-									minWord = words[b];
-									minWordIndex = b;
-
-								}
-
-							}
-						}
-					}
-
-					if (index.matches("/")) {
-
-						index = minWord;
-						words[minWordIndex] = "/";
-
-					}
-
-					else {
-
-						index += " " + minWord;
-						words[minWordIndex] = "/";
-
-					}
+					System.out.println(values[cntwords]);
 
 				}
+
+				else {
+
+					values[cntwords] = " ";
+
+				}
+
+				cntwords++;
+
 			}
+			
+			
 
-			System.out.println("The correct order is: " + index);
+			/*for (int d = 0; words.length - 1 >= d; d++) {
+
+				int maxVal = values[0];
+				int maxValIndex = 0;
+
+				for (int e = 0; words.length - 1 > e; e++) {
+
+					if (maxVal < values[d]) {
+
+						maxVal = values[d];
+
+						maxValIndex = d;
+					}
+
+				}
+				
+				result = words[maxValIndex] + "\n" + result;
+				
+				System.out.println(result);
+				
+				words[maxValIndex] = " ";
+
+				values[maxValIndex] = 0;
+
+			}*/
+			
+			
+			System.out.println(result);
+			result = " ";
 
 			System.out.println("Wrong or imcompatible: " + incompatible + "\n");
 
@@ -146,5 +169,7 @@ public class Ex_1_18 {
 			}
 
 		}
+
 	}
+
 }
